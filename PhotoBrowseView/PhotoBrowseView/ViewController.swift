@@ -20,24 +20,22 @@ class ViewController: UIViewController {
     /// 转场代理
     let photoBrowserAnimator = PhotoBrowserAnimator()
     
-    /// 点击
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else{
-            return
-        }
-        let point = touch.location(in: self.view)
-        let layer = self.view.layer.hitTest(point)
-        if layer === self.imageView.layer{
-            self.handlePhotoShowPress()
-        }
-    }
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.imageView)
+        // 添加手势
+        self.imageView.isUserInteractionEnabled = true
+        let signTap = UITapGestureRecognizer(target: self, action: #selector(self.clickImageView(sender:)))
+        self.imageView.addGestureRecognizer(signTap)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc func clickImageView(sender:UITapGestureRecognizer){
+       self.handlePhotoShowPress()
     }
 
     /// 如果已上传图片就打开预览
