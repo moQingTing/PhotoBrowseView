@@ -55,7 +55,6 @@ extension PhotoBrowserController:AnimatorDismissDelegate{
     /// 当前controller dismiss时执行
     func imageViewForDimissView() -> UIImageView {
         print("imageViewForDimissView")
-//        self.imageView.isHidden = true
         return self.imageView
     }
     
